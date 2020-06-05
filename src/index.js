@@ -1,20 +1,6 @@
-class Project{
-  constructor(pName) {
-    this.pName = pName;
-  }
-};
+import Project from "./model/project";
+import Todo from "./model/todo";
 
-class Todo {
-  constructor(title, description, dueDate, priority) {
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.priority = priority;
-    this.done = false;
-  }
+const project = new Project('test','test','test','test');
 
-  markAsDone() {
-    this.done = true;
-  }
-}
-
+console.log(todo1);
