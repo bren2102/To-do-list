@@ -1,0 +1,56 @@
+$top_header_height: 70px;
+$accent_color: #F23A2C;
+$main_padding: 15px;
+$gray_background_color: #F2F2F3;
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+p, span, li {
+  font-family: 'PT Sans', sans-serif;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  h2 {
+    font-size: 50px;
+  }
+}
+
+.top-header {
+  width: 100%;
+  height: $top_header_height;
+  background-color: $accent_color;
+}
+
+#side-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  #projects {
+    .projects-header {
+      padding: $main_padding;
+      display: flex;
+      background: $gray_background_color;
+      justify-content: space-between;
+      h3 {
+        
+      }
+    }
+    #list-projects li {
+      padding: $main_padding;
+    }
+  }
+}
+
+#main-content {
+  width: 70%;
+}
