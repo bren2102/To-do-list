@@ -2,17 +2,27 @@ $top_header_height: 70px;
 $accent_color: #F23A2C;
 $main_padding: 15px;
 $gray_background_color: #F2F2F3;
+$light_border: 0.6px solid #f6f6f6;
+$projects_li_colors: (
+  "color_1": #FF847D,
+  "color_2":  #00AAFF,
+  "color_3":  #85C3F1,
+  "color_4":  #FE8CF2
+);
+$key: "color_3";
+$nth_color: map-get($projects_li_colors,$key);
 
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Work Sans', sans-serif;
 }
 
 p, span, li {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .content {
@@ -34,7 +44,32 @@ p, span, li {
   top: 0;
   left: 0;
   width: 30%;
-  height: 100%;
+  height: 100vh;
+  border-right: 2px #c2c2c2 solid;
+  .top-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: $main_padding;
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .left-icons {
+      span {
+        font-size: 18px;
+        margin-left: 4px;
+      }
+    }
+    .right-icons {
+      *:first-child {
+       margin-right: 15px; 
+      }
+    }
+  }
   #projects {
     .projects-header {
       padding: $main_padding;
@@ -45,12 +80,70 @@ p, span, li {
         
       }
     }
-    #list-projects li {
-      padding: $main_padding;
+    #list-projects{
+      li {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: $main_padding;
+        border-bottom: $light_border;
+      }
+      li:last-child {
+        border-bottom: none;
+      }
+      .li_bullet {
+        display: block;
+        border-radius: 100%;
+        width: 10px;
+        height: 10px;
+        background-color: #85C3F1;
+        margin-right: 10px;
+      }
     }
   }
 }
 
 #main-content {
   width: 70%;
+  .top-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: $main_padding;
+    color: white;
+    span {
+      font-size: 18px;
+    }
+  }
+  .date {
+    padding: $main_padding;
+    border-bottom: $light_border;
+    b {
+      font-size: 18px;
+      color: #8e8e8e;
+    }
+    span {
+      font-size: 12px;
+      color: #bfbfbf;
+    }
+  }
+  .todos {
+    .todo {
+      padding: 20px 15px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border-bottom: $light_border;
+      .check-done {
+        border-radius: 100%;
+        border: 1px solid #8e8e8e;
+        background: white;
+        width: 25px;
+        height: 25px;
+        margin-right: 20px;
+      }
+    }
+  }
 }
