@@ -11,12 +11,16 @@ const uiManager = (() => {
   const date = document.querySelector('#date');
   const showAddInput = document.createElement('div');
 
+  let newProjectOpen = false;
+
   const initializeUi = () => {
     date.textContent = new Date().toDateString();
   };
 
   buttonAddProject.addEventListener('click',() => {
-
+    if(newProjectOpen)
+      return;
+    newProjectOpen = true;
     let li_project = document.createElement('li');
     let newProjectInput = document.createElement('input');
     newProjectInput.type = 'text';
@@ -29,6 +33,7 @@ const uiManager = (() => {
         Projects.push(newProject);
         newProjectInput.remove();
         renderProjects(Projects);
+        newProjectOpen = false;
       }
     });
     
@@ -42,25 +47,40 @@ const uiManager = (() => {
   const renderTodos = (project) => {
     todosList.innerHTML = '';
     headerProjectName.textContent = project.name.charAt(0).toUpperCase() + project.name.slice(1);
+    let count = 0;
     project.todoList.forEach(todoElement => {
       //title, description, dueDate, priority
       let todo = document.createElement('li');
       todo.classList = 'todo';
-      todo.innerHTML = `<div><div class="check-done"></div>
-                <span>${todoElement.title}</span></div>
-                <span>${todoElement.description}</span>
-                <span>${todoElement.dueDate}</span>
-                <span>${todoElement.priority}</span>`;
+      let idCheckDone = 'check'+count;
+      todo.innerHTML = `<div class="todo-header">
+                          <div style="display:flex;align-items:center"><div id="${idCheckDone}" class="check-done ${todoElement.done?'done':''}"></div>
+                            <span>${todoElement.title}</span>
+                          </div>
+                          <div class="right-section">
+                            <span class="priority">${todoElement.priority}</span>
+                            <span class="due-date">${todoElement.dueDate}</span>
+                          </div>
+                        </div>
+                        <span class="description">${todoElement.description}</span>
+                        `;
       todosList.appendChild(todo);
+      document.getElementById(idCheckDone).addEventListener('click', () => {
+        todoElement.markAsDone();
+        renderTodos(project);
+      });
+      count += 1;
     });
     addTodolist(project);
   };
 
   const addTodolist = (currentProject) => {
     const buttonAddtodo = document.createElement('button');
+    buttonAddtodo.id = 'button-add-todo';
     buttonAddtodo.innerHTML = `+ Add Todo`;
     todosList.appendChild(buttonAddtodo);
     const showAddInput = document.createElement('div');
+    showAddInput.classList.add('new-todo-input');
     buttonAddtodo.addEventListener('click', () => {
       todosList.appendChild(showAddInput);
       buttonAddtodo.remove();
@@ -74,15 +94,17 @@ const uiManager = (() => {
       inputTodoDate.type = 'date';
       showAddInput.appendChild(inputTodoDate);
       const inputTodoPriority = document.createElement('select');
-      inputTodoPriority.innerHTML = `<option value="high">High</option>
-                                <option value = "medium"> Medium </option>
-                                <option value = "low"> Low </option>`
+      inputTodoPriority.innerHTML = `<option value="High">High</option>
+                                <option value = "Medium"> Medium </option>
+                                <option value = "Low"> Low </option>`
       showAddInput.appendChild(inputTodoPriority);
       const buttonSubmitTodo = document.createElement('button');
       buttonSubmitTodo.textContent = 'Add';
+      buttonSubmitTodo.classList.add('button-accent');
       showAddInput.appendChild(buttonSubmitTodo);
       const buttonCancelTodo = document.createElement('button');
       buttonCancelTodo.textContent = 'Cancel';
+      buttonCancelTodo.classList.add('cancel-button');
       showAddInput.appendChild(buttonCancelTodo);
 
       buttonSubmitTodo.addEventListener('click', () => {
@@ -90,11 +112,11 @@ const uiManager = (() => {
         currentProject.addTodo(newTodo);
         renderTodos(currentProject);
         showAddInput.remove();
-        todosList.appendChild(buttonAddtodo);
+      
       });
       buttonCancelTodo.addEventListener('click', () => {
         showAddInput.remove();
-        todosList.appendChild(buttonAddtodo);
+        renderTodos(currentProject);
       });
     });
   };

@@ -12,6 +12,15 @@ $projects_li_colors: (
 $key: "color_3";
 $nth_color: map-get($projects_li_colors,$key);
 
+@mixin buttonAccent() {
+  color: $gray_background_color;
+  background: $accent_color;
+  padding: 7px;
+  font-size: 16px;
+  border-radius: 7px;
+  border: none;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
 * {
@@ -148,9 +157,9 @@ svg:hover {
     .todo {
       padding: 20px 15px;
       display: flex;
-      flex-direction: row;
-      align-items: center;
+      flex-direction: column;
       border-bottom: $light_border;
+      justify-content: space-between;
       .check-done {
         border-radius: 100%;
         border: 1px solid #8e8e8e;
@@ -158,6 +167,62 @@ svg:hover {
         width: 25px;
         height: 25px;
         margin-right: 20px;
+        &.done {
+          background-color: $accent_color;
+        }
+      }
+      .todo-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        align-items: center;
+        .right-section {
+          display: flex;
+          align-items: center;
+          .due-date {
+            color: gray;
+            font-size: 12px;
+            margin-bottom: -3px;
+          }
+          .priority {
+            margin-right: 3px;
+          }
+        }
+      }
+      .description {
+        color: gray;
+        font-size: 14px;
+        padding: 10px 45px;
+      }
+    }
+    #button-add-todo {
+      margin: $main_padding;
+      padding: 7px;
+      font-size: 16px;
+      border-radius: 7px;
+      border: none;
+      color: $gray_background_color;
+      background: $accent_color;
+      &:hover {
+        cursor: pointer;
+        color: white;
+      }
+    }
+    .new-todo-input {
+      display: flex;
+      justify-content: space-between;
+      padding: $main_padding;
+      input, select, button {
+        padding: 4px;
+        font-size: 16px;
+        // border: none;
+        // border: $gray_background_color 1px solid;
+      }
+      button {
+        @include buttonAccent();
+      }
+      .cancel-button {
+        background-color: gray;
       }
     }
   }
