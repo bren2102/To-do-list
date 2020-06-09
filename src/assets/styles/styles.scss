@@ -80,8 +80,9 @@ svg:hover {
       display: flex;
       background: $gray_background_color;
       justify-content: space-between;
-      h3 {
-        
+      #addProjectButton {
+        border: none;
+        background-color: transparent;
       }
     }
     #list-projects{
