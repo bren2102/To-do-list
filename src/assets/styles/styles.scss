@@ -25,6 +25,10 @@ p, span, li {
   font-family: 'Work Sans', sans-serif;
 }
 
+svg:hover {
+  cursor: pointer;
+}
+
 .content {
   width: 100%;
   display: flex;
@@ -88,6 +92,16 @@ p, span, li {
         align-items: center;
         padding: $main_padding;
         border-bottom: $light_border;
+        &:hover {
+          cursor: pointer;
+        }
+        .new-project-name {
+          width: 100%;
+          border: none;
+          border-bottom: 1px solid black;
+          font-size: 16px;
+          padding: 4px;
+        }
       }
       li:last-child {
         border-bottom: none;
