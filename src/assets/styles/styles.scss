@@ -220,9 +220,11 @@ svg:hover {
       }
       button {
         @include buttonAccent();
+        width: 100px;
       }
       .cancel-button {
         background-color: gray;
+        width: 100px;
       }
     }
   }

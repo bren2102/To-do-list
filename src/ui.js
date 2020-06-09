@@ -86,9 +86,11 @@ const uiManager = (() => {
       buttonAddtodo.remove();
       const inputTodoTitle = document.createElement('input');
       inputTodoTitle.type = 'text';
+      inputTodoTitle.placeholder = 'Add Title';
       showAddInput.appendChild(inputTodoTitle);
       const inputTodoDesc = document.createElement('input');
       inputTodoDesc.type = 'text';
+      inputTodoDesc.placeholder = 'Add Description';
       showAddInput.appendChild(inputTodoDesc);
       const inputTodoDate = document.createElement('input');
       inputTodoDate.type = 'date';

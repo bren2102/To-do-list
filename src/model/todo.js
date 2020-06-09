@@ -9,7 +9,7 @@ class Todo {
   }
 
   markAsDone() {
-    this.done = true;
+    this.done = !(this.done);
   }
 }
 
