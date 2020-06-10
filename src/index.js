@@ -5,7 +5,7 @@ import Projects from './initialize';
 import './assets/styles/styles.scss';
 
 Ui.initializeUi();
-if (Projects.length == 0) {
+if (Projects.length === 0) {
   const project1 = new Project('Tutorial');
   const todo1 = new Todo('First step', 'Add a project', '2020-06-10', 'High');
   project1.addTodo(todo1);
@@ -17,8 +17,7 @@ if (Projects.length == 0) {
   project1.addTodo(todo4);
   Projects.push(project1);
   Ui.renderTodos(project1);
-}
-else {
+} else {
   Ui.renderTodos(Projects[0]);
 }
 Ui.renderProjects(Projects);
