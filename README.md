@@ -39,7 +39,7 @@ todo tasks to them.
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/bren2102/To-do-list/issues).
 
 ## Show your support
 

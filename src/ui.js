@@ -73,7 +73,7 @@ const uiManager = (() => {
         todoElement.markAsDone();
         renderTodos(project);
       });
-      document.getElementById(idEdit).addEventListener('click',() => {
+      document.getElementById(idEdit).addEventListener('click', () => {
         todo.innerHTML = '';
         const showAddInput = document.createElement('div');
         showAddInput.classList.add('new-todo-input');
@@ -97,7 +97,6 @@ const uiManager = (() => {
                                   <option value="Low"> Low </option>`;
         inputTodoPriority.value = todoElement.priority;
         showAddInput.appendChild(inputTodoPriority);
-        
 
         const buttonSubmitTodo = document.createElement('button');
         buttonSubmitTodo.textContent = 'Save';
@@ -113,7 +112,7 @@ const uiManager = (() => {
           todoElement.description = inputTodoDesc.value;
           todoElement.dueDate = inputTodoDate.value;
           todoElement.priority = inputTodoPriority.value;
-          
+
           renderTodos(project);
           showAddInput.remove();
         });
@@ -125,7 +124,7 @@ const uiManager = (() => {
 
         todo.appendChild(showAddInput);
       });
-      document.getElementById(idDelete).addEventListener('click',() => {
+      document.getElementById(idDelete).addEventListener('click', () => {
         project.removeTodo(idEl);
         renderTodos(project);
       });
@@ -133,6 +132,8 @@ const uiManager = (() => {
     });
     /* eslint-disable */
     addTodolist(project);
+    
+    localStorage.setItem('projects', JSON.stringify(Projects));
     /* eslint-enable */
   };
 
@@ -174,7 +175,7 @@ const uiManager = (() => {
       buttonSubmitTodo.addEventListener('click', () => {
         const newTodo = new Todo(inputTodoTitle.value,
           inputTodoDesc.value, inputTodoDate.value,
-          inputTodoPriority.value, currentProject);
+          inputTodoPriority.value);
         currentProject.addTodo(newTodo);
         renderTodos(currentProject);
         showAddInput.remove();
@@ -199,6 +200,7 @@ const uiManager = (() => {
       projList.innerHTML = `<div class="li_bullet"></div>${project.name}`;
       listProjects.appendChild(projList);
     });
+    localStorage.setItem('projects', JSON.stringify(projects));
   };
   return { renderTodos, renderProjects, initializeUi };
 })();

@@ -9,8 +9,7 @@ class Project {
   }
 
   removeTodo(indTodo) {
-    this.todoList.splice(indTodo,1);
-    console.log(this.todoList, indTodo);
+    this.todoList.splice(indTodo, 1);
   }
 }
 
