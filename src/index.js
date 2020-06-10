@@ -1,6 +1,6 @@
-import Project from "./model/project";
-import Todo from "./model/todo";
-import Ui from "./ui.js"
+import Project from './model/project';
+import Todo from './model/todo';
+import Ui from './ui';
 import Projects from './initialize';
 import './assets/styles/styles.scss';
 
