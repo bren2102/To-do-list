@@ -1,6 +1,7 @@
 # To Do List - JS App
 
-> We developed a Javascript application in which we had the chance to play around with object factory and modules. In this application you can play with another person the classic tic tac toe game.
+> We developed a Todo list application in which we had the chance to consolidate our knowledge about OOP principles, organizing JS code using object factories and classes along with ES6 modules, and using Webpack as a module manager. You can create as many projects as you want and also add unlimited 
+todo tasks to them.
 
 ## Built With
 
