@@ -176,6 +176,7 @@ const uiManager = (() => {
         const newTodo = new Todo(inputTodoTitle.value,
           inputTodoDesc.value, inputTodoDate.value,
           inputTodoPriority.value);
+        console.log(currentProject);
         currentProject.addTodo(newTodo);
         renderTodos(currentProject);
         showAddInput.remove();

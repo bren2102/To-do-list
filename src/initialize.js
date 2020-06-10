@@ -1,8 +1,21 @@
+import Project from "./model/project";
+import Todo from "./model/todo";
+
 const projects = [];
 if (!window.localStorage.getItem('projects')) {
   window.localStorage.setItem('projects', JSON.stringify([]));
 }
 projects.length = 0;
-projects.push(...JSON.parse(window.localStorage.getItem('projects')));
+
+const loadedFromStorage = JSON.parse(window.localStorage.getItem('projects'));
+console.log(loadedFromStorage);
+loadedFromStorage.forEach(element => {
+  const newProject = new Project(element.name);
+  element.todoList.forEach(todo => {
+    const newTodo = new Todo(todo.title,todo.description, todo.dueDate, todo.priority);
+    newProject.addTodo(newTodo);
+  });
+  projects.push(newProject);
+});
 
 export default projects;
