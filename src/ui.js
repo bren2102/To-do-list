@@ -48,9 +48,12 @@ const uiManager = (() => {
     headerProjectName.textContent = project.name.charAt(0).toUpperCase() + project.name.slice(1);
     let count = 0;
     project.todoList.forEach(todoElement => {
+      const idEl = count;
       const todo = document.createElement('li');
       todo.classList = 'todo';
-      const idCheckDone = `check + ${count}`;
+      const idCheckDone = `check_${count}`;
+      const idEdit = `edit_${count}`;
+      const idDelete = `delete_${count}`;
       todo.innerHTML = `<div class="todo-header">
                           <div style="display:flex;align-items:center"><div id="${idCheckDone}" class="check-done ${todoElement.done ? 'done' : ''}"></div>
                             <span>${todoElement.title}</span>
@@ -58,12 +61,72 @@ const uiManager = (() => {
                           <div class="right-section">
                             <span class="priority">${todoElement.priority}</span>
                             <span class="due-date">${todoElement.dueDate}</span>
+                            <div class="actions" > 
+                              <button id="${idEdit}"><span class="iconify" data-inline="false" data-icon="bytesize:edit" style="color: gray; font-size: 18px;"></span></button>
+                              <button id="${idDelete}"><span class="iconify" data-inline="false" data-icon="typcn:delete" style="color: gray; font-size: 18px;"></span></button>
+                            </div>
                           </div>
                         </div>
                         <span class="description">${todoElement.description}</span>`;
       todosList.appendChild(todo);
       document.getElementById(idCheckDone).addEventListener('click', () => {
         todoElement.markAsDone();
+        renderTodos(project);
+      });
+      document.getElementById(idEdit).addEventListener('click',() => {
+        todo.innerHTML = '';
+        const showAddInput = document.createElement('div');
+        showAddInput.classList.add('new-todo-input');
+        const inputTodoTitle = document.createElement('input');
+        inputTodoTitle.type = 'text';
+        inputTodoTitle.placeholder = 'Add Title';
+        inputTodoTitle.value = todoElement.title;
+        showAddInput.appendChild(inputTodoTitle);
+        const inputTodoDesc = document.createElement('input');
+        inputTodoDesc.type = 'text';
+        inputTodoDesc.placeholder = 'Add Description';
+        inputTodoDesc.value = todoElement.description;
+        showAddInput.appendChild(inputTodoDesc);
+        const inputTodoDate = document.createElement('input');
+        inputTodoDate.type = 'date';
+        inputTodoDate.value = todoElement.dueDate;
+        showAddInput.appendChild(inputTodoDate);
+        const inputTodoPriority = document.createElement('select');
+        inputTodoPriority.innerHTML = `<option value="High">High</option>
+                                  <option value="Medium"> Medium </option>
+                                  <option value="Low"> Low </option>`;
+        inputTodoPriority.value = todoElement.priority;
+        showAddInput.appendChild(inputTodoPriority);
+        
+
+        const buttonSubmitTodo = document.createElement('button');
+        buttonSubmitTodo.textContent = 'Save';
+        buttonSubmitTodo.classList.add('button-accent');
+        showAddInput.appendChild(buttonSubmitTodo);
+        const buttonCancelTodo = document.createElement('button');
+        buttonCancelTodo.textContent = 'Cancel';
+        buttonCancelTodo.classList.add('cancel-button');
+        showAddInput.appendChild(buttonCancelTodo);
+
+        buttonSubmitTodo.addEventListener('click', () => {
+          todoElement.title = inputTodoTitle.value;
+          todoElement.description = inputTodoDesc.value;
+          todoElement.dueDate = inputTodoDate.value;
+          todoElement.priority = inputTodoPriority.value;
+          
+          renderTodos(project);
+          showAddInput.remove();
+        });
+
+        buttonCancelTodo.addEventListener('click', () => {
+          showAddInput.remove();
+          renderTodos(project);
+        });
+
+        todo.appendChild(showAddInput);
+      });
+      document.getElementById(idDelete).addEventListener('click',() => {
+        project.removeTodo(idEl);
         renderTodos(project);
       });
       count += 1;

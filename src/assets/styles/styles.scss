@@ -30,6 +30,11 @@ $nth_color: map-get($projects_li_colors, $key);
   font-family: 'Work Sans', sans-serif;
 }
 
+button {
+  border: none;
+  background-color: transparent;
+}
+
 p,
 span,
 li {
@@ -124,6 +129,10 @@ svg:hover {
 
           .priority {
             margin-right: 3px;
+          }
+
+          .actions {
+            margin-left: 8px;
           }
         }
       }
