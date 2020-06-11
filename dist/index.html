@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+  <title>Projects - ToDo List</title>
+</head>
+<body>
+  <div class="content">
+    <aside id="side-bar">
+      <header class="top-header">
+        <div class="left-icons">
+          <span class="iconify" data-inline="false" data-icon="cil:home" style="color: white; font-size: 23px;"></span>
+        </div>
+        <div class="right-icons">
+           <span class="iconify" data-inline="false" data-icon="bi:bell-fill" style="color: #ffffff; font-size: 20px;"></span> 
+          <span class="iconify" data-inline="false" data-icon="clarity:settings-solid" style="color: #ffffff; font-size: 24px;"></span>
+        </div>
+      </header>
+      <div id="projects">
+        <div class="projects-header" >
+          <h3>Projects</h3>
+          <button id="addProjectButton"><span class="iconify" data-inline="false" data-icon="ant-design:plus-outlined" style="color: #8f8f8f; font-size: 20px;" data-flip="vertical"></span></button>
+        </div>
+        <ul id="list-projects" >
+        </ul>
+      </div>
+    </aside>
+    <main id="main-content">
+      <header class="top-header">
+        <span class="iconify" data-inline="false" data-icon="eva:expand-fill" style="color: #ffffff; font-size: 24px;" data-flip="vertical"></span>
+        <span id="header-project-name">Page</span>
+        <span class="iconify" data-inline="false" data-icon="mdi-light:dots-horizontal" style="color: white; font-size: 24px;"></span>
+      </header>
+      <div class="date">
+        <b> Todo List </b>  <span id="date"> Sat. March, 23rd </span>
+      </div>
+      <ul class="todos" id="todos_list">
+      </ul>
+    </main>
+  </div>
+</body>
+<script src="main.js" type="text/javascript"></script>
+</html>
+
+<!-- <input type="text" name="todo-title" id="todo-title">
+    <input type="text" name="todo-desc" id="todo-desc">
+    <input type="date" name="todo-date" id="todo-date">
+    <select name="todo-priority" id="todo-priority"></select>
+    <input type="checkbox" name="todo-checklist" id="todo-checklist"> -->

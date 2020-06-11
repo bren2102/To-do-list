@@ -1,0 +1,273 @@
+$top_header_height: 70px;
+$accent_color: #f23a2c;
+$main_padding: 15px;
+$gray_background_color: #f2f2f3;
+$light_border: 0.6px solid #f6f6f6;
+$projects_li_colors: (
+  "color_1": #ff847d,
+  "color_2":  #0af,
+  "color_3":  #85c3f1,
+  "color_4":  #fe8cf2
+);
+$key: "color_3";
+$nth_color: map-get($projects_li_colors, $key);
+
+@mixin buttonAccent() {
+  color: $gray_background_color;
+  background: $accent_color;
+  padding: 7px;
+  font-size: 16px;
+  border-radius: 7px;
+  border: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Work Sans', sans-serif;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+p,
+span,
+li {
+  font-family: 'Work Sans', sans-serif;
+}
+
+svg:hover {
+  cursor: pointer;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+
+  h2 {
+    font-size: 50px;
+  }
+}
+
+.top-header {
+  width: 100%;
+  height: $top_header_height;
+  background-color: $accent_color;
+}
+
+#main-content {
+  width: 70%;
+
+  .top-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: $main_padding;
+    color: white;
+
+    span {
+      font-size: 18px;
+    }
+  }
+
+  .date {
+    padding: $main_padding;
+    border-bottom: $light_border;
+
+    b {
+      font-size: 18px;
+      color: #8e8e8e;
+    }
+
+    span {
+      font-size: 12px;
+      color: #bfbfbf;
+    }
+  }
+
+  .todos {
+    .todo {
+      padding: 20px 15px;
+      display: flex;
+      flex-direction: column;
+      border-bottom: $light_border;
+      justify-content: space-between;
+
+      .check-done {
+        border-radius: 100%;
+        border: 1px solid #8e8e8e;
+        background: white;
+        width: 25px;
+        height: 25px;
+        margin-right: 20px;
+
+        &.done {
+          background-color: $accent_color;
+        }
+      }
+
+      .todo-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .right-section {
+          display: flex;
+          align-items: center;
+
+          .due-date {
+            color: gray;
+            font-size: 12px;
+            margin-bottom: -3px;
+          }
+
+          .priority {
+            margin-right: 3px;
+          }
+
+          .actions {
+            margin-left: 8px;
+          }
+        }
+      }
+
+      .description {
+        color: gray;
+        font-size: 14px;
+        padding: 10px 45px;
+      }
+    }
+
+    #button-add-todo {
+      margin: $main_padding;
+      padding: 7px;
+      font-size: 16px;
+      border-radius: 7px;
+      border: none;
+      color: $gray_background_color;
+      background: $accent_color;
+
+      &:hover {
+        cursor: pointer;
+        color: white;
+      }
+    }
+
+    .new-todo-input {
+      display: flex;
+      justify-content: space-between;
+      padding: $main_padding;
+
+      input,
+      select,
+      button {
+        padding: 4px;
+        font-size: 16px;
+      }
+
+      button {
+        @include buttonAccent();
+
+        width: 100px;
+      }
+
+      .cancel-button {
+        background-color: gray;
+        width: 100px;
+      }
+    }
+  }
+}
+
+#side-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100vh;
+  border-right: 2px #c2c2c2 solid;
+
+  .top-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: $main_padding;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .left-icons {
+      span {
+        font-size: 18px;
+        margin-left: 4px;
+      }
+    }
+
+    .right-icons {
+      *:first-child {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  #projects {
+    .projects-header {
+      padding: $main_padding;
+      display: flex;
+      background: $gray_background_color;
+      justify-content: space-between;
+
+      #addProjectButton {
+        border: none;
+        background-color: transparent;
+      }
+    }
+
+    #list-projects {
+      li {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: $main_padding;
+        border-bottom: $light_border;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .new-project-name {
+          width: 100%;
+          border: none;
+          border-bottom: 1px solid black;
+          font-size: 16px;
+          padding: 4px;
+        }
+      }
+
+      li:last-child {
+        border-bottom: none;
+      }
+
+      .li_bullet {
+        display: block;
+        border-radius: 100%;
+        width: 10px;
+        height: 10px;
+        background-color: #85c3f1;
+        margin-right: 10px;
+      }
+    }
+  }
+}
